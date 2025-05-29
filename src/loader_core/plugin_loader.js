@@ -32,8 +32,8 @@ function deletePlugin(slug) {
         app.on("ready", () => {
             dialog.showMessageBox(null, {
                 type: "error",
-                title: "LiteLoaderQQNT",
-                message: `删除插件时报错，请检查并手动删除\n${error}`
+                title: "LLQQNT-unofficial",
+                message: `删除插件时出错，请检查并手动删除\n${error}`
             });
         });
     }
@@ -63,7 +63,7 @@ function InstallPlugin(slug) {
         app.on("ready", () => {
             dialog.showMessageBox(null, {
                 type: "error",
-                title: "LiteLoaderQQNT",
+                title: "LLQQNT-unofficial",
                 message: `安装插件时报错，请检查并手动安装\n${error}`
             });
         });
@@ -93,7 +93,7 @@ function findAllPlugin() {
         app.on("ready", () => {
             dialog.showMessageBox(null, {
                 type: "warning",
-                title: "LiteLoaderQQNT",
+                title: "LLQQNT-unofficial",
                 message: `在读取数据目录时报错了！请检查插件目录或忽略继续启动\n${error}`
             });
         });
@@ -138,11 +138,11 @@ function loadAllPlugin() {
     const slugs = plugins.map(plugin => plugin.manifest.slug);
     const missing = [...dependencies].filter(slug => !slugs.includes(slug));
     for (const slug of missing) {
-        output("Missing Plugin:", slug);
+        output("Missing Dep:", slug);
         app.on("ready", () => {
             dialog.showMessageBox(null, {
                 type: "warning",
-                title: "LiteLoaderQQNT",
+                title: "LLQQNT-unofficial",
                 message: `插件缺少依赖：${slug}`
             });
         });

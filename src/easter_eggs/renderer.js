@@ -50,7 +50,7 @@ loadEasterEggs([
         hash: "#/setting",
         selector: ".liteloader.nav-bar .nav-item[data-slug='config_view']",
         trigger: (settingn_navtab_item) => {
-            const new_name = "LiteLoaderNTQQ"
+            const new_name = "LLNTQQ-unofficial";
             const random_number = Math.floor(Math.random() * 10000);
             const name = settingn_navtab_item.querySelector(".name");
             if (random_number == 0) {
@@ -68,9 +68,9 @@ loadEasterEggs([
                 if (click_count == 20) {
                     click_count = 0;
                     new Notification(
-                        "LiteLoaderQQNT",
+                        "LLQQNT-unofficial",
                         {
-                            body: "你咋这么急着更新？\n你就不能再等等？\n或者来催一下沫烬染（",
+                            body: "你咋这么急着更新？\n你就不能再等等？\n或者去催一下晚梦（",
                             requireInteraction: true
                         }
                     );
@@ -111,6 +111,13 @@ loadEasterEggs([
                     context_menu.append(menu_item);
                 }
             });
+        }
+    },
+    {
+        hash: '#/about',
+        selector: '.content .version',
+        trigger: (version_text) => {
+            version_text.textContent += ' with LLQQNTUOF';
         }
     }
 ]);

@@ -65,7 +65,7 @@ export class SettingInterface {
         const view = this.add({
             manifest: {
                 slug: "config_view",
-                name: "LiteLoaderQQNT",
+                name: "LLQQNT-unofficial",
                 thumb: "./src/settings/static/default.svg"
             },
             path: {
@@ -130,7 +130,7 @@ async function initVersions(view) {
     const jump_link = () => LiteLoader.api.openExternal(update_btn.value);
     const try_again = () => {
         // 初始化 显示
-        title.textContent = "正在瞅一眼 LiteLoaderQQNT 是否有新版本";
+        title.textContent = "正在瞅一眼 LLQQNTUOF 是否有新版本";
         update_btn.textContent = "你先别急";
         update_btn.value = null;
         update_btn.removeEventListener("click", jump_link);
@@ -153,7 +153,7 @@ async function initVersions(view) {
             };
             // 有新版
             if (compareVersions(LiteLoader.versions.liteloader, new_version)) {
-                title.textContent = `发现 LiteLoaderQQNT 新版本 ${new_version}`;
+                title.textContent = `发现新版本 ${new_version}`;
                 update_btn.textContent = "去瞅一眼";
                 update_btn.value = res.url;
                 update_btn.removeEventListener("click", try_again);
@@ -161,15 +161,15 @@ async function initVersions(view) {
             }
             // 没新版
             else {
-                title.textContent = "暂未发现 LiteLoaderQQNT 有新版本，目前已是最新";
-                update_btn.textContent = "重新发现";
+                title.textContent = "暂未发现新版本，目前已是最新";
+                update_btn.textContent = "再瞅一眼";
                 update_btn.value = null;
                 update_btn.removeEventListener("click", jump_link);
                 update_btn.addEventListener("click", try_again);
             }
         }).catch((e) => {
-            title.textContent = `检查更新时遇到错误：${e}`;
-            update_btn.textContent = "重新发现";
+            title.textContent = `啊嘞, 检查更新失败了... (${e})`;
+            update_btn.textContent = "再试一次";
             update_btn.value = null;
             update_btn.removeEventListener("click", jump_link);
             update_btn.addEventListener("click", try_again);
@@ -198,7 +198,7 @@ async function initPluginList(view) {
         const config = await LiteLoader.api.config.get("LiteLoader", default_config);
         const has_install = Object.values(config.installing_plugins).some(item => item.plugin_path == filepath);
         const is_install = await LiteLoader.api.plugin.install(filepath, has_install);
-        alert(is_install ? (has_install ? "已取消安装此插件" : "将在下次启动时安装") : "无法安装无效插件");
+        alert(is_install ? (has_install ? "已取消安装此插件" : "将在下次启动时安装") : "无效插件, 安装失败");
         input_file.value = null;
     });
     plugin_install_button.addEventListener("click", () => input_file.click());
@@ -213,9 +213,10 @@ async function initPluginList(view) {
     });
 
     const plugin_counts = {
-        extension: 0,
-        theme: 0,
-        framework: 0
+        extension: [0, 0],
+        theme: [0, 0],
+        framework: [0, 0],
+        total: [0, 0]
     }
 
     for (const [slug, plugin] of Object.entries(LiteLoader.plugins)) {
@@ -269,7 +270,7 @@ async function initPluginList(view) {
             repo_link.textContent = repo;
             repo_link.dataset["value"] = `https://github.com/${repo}/tree/${branch}`;
             plugin_item_repo.append(repo_link);
-        } else plugin_item_repo.textContent = "暂无仓库信息";
+        } else plugin_item_repo.textContent = "🈚";
 
         plugin_item_manager_modal.dataset["title"] = plugin.manifest.name;
 
@@ -302,13 +303,15 @@ async function initPluginList(view) {
 
         plugin_list.append(plugin_item);
 
-        plugin_counts.total++;
-        plugin_counts[plugin.manifest.type]++;
+        plugin.disabled? plugin_counts.total[1]++:
+            plugin_counts.total.forEach((n, i) => plugin_counts.total[i]++);
+        plugin.disabled? plugin_counts[plugin.manifest.type][1]++:
+            plugin_counts[plugin.manifest.type].forEach((n, i) => plugin_counts[plugin.manifest.type][i]++);
     }
 
-    plugin_lists.extension.dataset["title"] = `扩展 （ ${plugin_counts.extension} 个插件 ）`;
-    plugin_lists.theme.dataset["title"] = `主题 （ ${plugin_counts.theme} 个插件 ）`;
-    plugin_lists.framework.dataset["title"] = `依赖 （ ${plugin_counts.framework} 个插件 ）`;
+    plugin_lists.extension.dataset["title"] = `扩展 (${plugin_counts.extension.join('/')})`;
+    plugin_lists.theme.dataset["title"] = `主题 (${plugin_counts.theme.join('/')})`;
+    plugin_lists.framework.dataset["title"] = `依赖 (${plugin_counts.framework.join('/')})`;
 }
 
 
@@ -332,7 +335,8 @@ async function initAbout(view) {
     const channel = view.querySelector(".about .channel");
 
     liteloaderqqnt.addEventListener("click", () => LiteLoader.api.openExternal("https://liteloaderqqnt.github.io"));
-    github.addEventListener("click", () => LiteLoader.api.openExternal("https://github.com/LiteLoaderQQNT"));
+    github.addEventListener('click', () => LiteLoader.api.openExternal('https://github.com/LateDreamXD/LLQQNT-unofficial'))
+    view.querySelector('.about .github-upstream').addEventListener("click", () => LiteLoader.api.openExternal("https://github.com/LiteLoaderQQNT/LiteLoaderQQNT"));
     group.addEventListener("click", () => LiteLoader.api.openExternal("https://t.me/LiteLoaderQQNT"));
     channel.addEventListener("click", () => LiteLoader.api.openExternal("https://t.me/LiteLoaderQQNT_Channel"));
 
@@ -357,5 +361,5 @@ async function initAbout(view) {
         await trueUpdate();
     };
     trueUpdate();
-    setInterval(fetchHitokoto, 1000 * 10);
+    setInterval(fetchHitokoto, 1000 * 15);
 }
