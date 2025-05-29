@@ -1,9 +1,10 @@
-# LiteLoaderQQNT
+# LLQQNT-unofficial
 
-LiteLoaderQQNT 是 QQNT 的插件加载器，一般在 QQNT 的环境内简称为 LiteLoader。  
-它可以让你自由地为 QQNT 添加各种插件，并实现例如美化主题、增加功能等各种功能。
+> [!WARNING]
+> LLQQNT-unofficial 并没有防封措施, 使用 LLQQNTUOF 请自行承担风险。
+>
+> 关于封禁问题详情见 [LLQQNT 官网](https://liteloaderqqnt.github.io/guide/introduction.html#警告2)
 
-⚠警告：QQ安全中心可能会将LiteLoaderQQNT当作外挂软件并下线您的设备，还有可能会导致您的QQ账号封号，建议使用小号安装LiteLoaderQQNT（目前已有人收到QQ安全账号的提醒）。
-请谨慎使用LiteLoaderQQNT。
+LiteLoaderQQNT 非官方版本，基于 LiteLoaderQQNT 二次开发，遵循上游版本的开源协议
 
-详情查看 LiteLoaderQQNT 官网：https://liteloaderqqnt.github.io
+[LLQQNTUOF 计划表](./TODO.md)
