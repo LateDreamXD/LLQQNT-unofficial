@@ -1,18 +1,21 @@
 {
-    "name": "liteloader-qqnt",
-    "version": "1.2.3",
-    "description": "QQNT 插件加载器 LiteLoaderQQNT —— 轻量 · 简洁 · 开源 · 福瑞",
+    "name": "llqqnt-unofficial",
+    "version": "1.2.3+uof.1",
+    "description": "LiteLoaderQQNT 非官方版本，基于 LiteLoaderQQNT 二次开发，遵循上游版本的开源协议",
     "main": "./src/init.js",
     "private": true,
     "license": "MIT",
     "author": {
+        "name": "LateDream",
+        "url": "https://github.com/LateDreamXD"
+    },
+    "contributors": [{
         "name": "LiteLoaderQQNT",
         "url": "https://github.com/LiteLoaderQQNT"
-    },
-    "homepage": "https://liteloaderqqnt.github.io",
-    "bugs": "https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/issues",
+    }],
+    "bugs": "https://github.com/LateDreamXD/LLQQNT-unofficial/issues",
     "repository": {
         "type": "git",
-        "url": "https://github.com/LiteLoaderQQNT/LiteLoaderQQNT.git"
+        "url": "https://github.com/LateDreamXD/LLQQNT-unofficial.git"
     }
 }
