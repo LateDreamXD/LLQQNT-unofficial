@@ -245,7 +245,9 @@ async function initPluginList(view) {
         const manager_modal_uninstall = plugin_item_manager_modal.querySelector(".uninstall");
 
         plugin_item_icon.innerHTML = await appropriateIcon(icon);
-        plugin_item_name.textContent = plugin.manifest.name;
+        plugin_item_name.textContent = plugin.manifest.builtin?
+            `${plugin.manifest.name} (内置)`:
+            plugin.manifest.name;
         plugin_item_name.title = plugin.manifest.name;
         plugin_item_description.textContent = plugin.manifest.description;
         plugin_item_description.title = plugin.manifest.description;

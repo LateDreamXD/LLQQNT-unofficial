@@ -75,13 +75,13 @@ function InstallPlugin(slug) {
 }
 
 
-function findAllPlugin() {
+function findAllPlugin(searchPath = LiteLoader.path.plugins) {
     const plugins = [];
     try {
-        fs.mkdirSync(LiteLoader.path.plugins, { recursive: true });
-        for (const pathname of fs.readdirSync(LiteLoader.path.plugins, "utf-8")) {
+        fs.mkdirSync(searchPath, { recursive: true });
+        for (const pathname of fs.readdirSync(searchPath, "utf-8")) {
             try {
-                const filepath = path.join(LiteLoader.path.plugins, pathname, "manifest.json");
+                const filepath = path.join(searchPath, pathname, "manifest.json");
                 const manifest = JSON.parse(fs.readFileSync(filepath, "utf-8"));
                 if (manifest.manifest_version == 4) plugins.push({ pathname, manifest });
             }
@@ -101,11 +101,16 @@ function findAllPlugin() {
     return plugins;
 }
 
+function findAllBuiltinPlugin() {
+    return findAllPlugin(LiteLoader.path.builtin_plugins);
+}
 
-function getPluginInfo(pathname, manifest) {
+
+function getPluginInfo(pathname, manifest, isBuiltin = false) {
     const incompatible_platform = !manifest.platform.includes(LiteLoader.os.platform);
     const disabled_plugin = config.disabled_plugins.includes(manifest.slug);
-    const plugin_path = path.join(LiteLoader.path.plugins, pathname);
+    const plugin_path = path.join(isBuiltin? LiteLoader.path.builtin_plugins: LiteLoader.path.plugins,
+                                  pathname);
     const data_path = path.join(LiteLoader.path.data, manifest.slug);
     const main_file = path.join(plugin_path, manifest?.injects?.main ?? "");
     const preload_file = path.join(plugin_path, manifest?.injects?.preload ?? "");
@@ -127,12 +132,15 @@ function getPluginInfo(pathname, manifest) {
 }
 
 
-function loadAllPlugin() {
-    const plugins = findAllPlugin();
+function loadAllPlugin() {try{
+    const builtin_plugins = findAllBuiltinPlugin();
+    const user_plugins = findAllPlugin();
+    const plugins = builtin_plugins.concat(user_plugins);
     const dependencies = new Set();
     for (const { pathname, manifest } of plugins) {
         output("Found Plugin:", manifest.name);
-        LiteLoader.plugins[manifest.slug] = getPluginInfo(pathname, manifest);
+        LiteLoader.plugins[manifest.slug] = getPluginInfo(pathname, manifest,
+            !!builtin_plugins.find(plugin => plugin.pathname == pathname));
         manifest.dependencies?.forEach?.(slug => dependencies.add(slug));
     }
     const slugs = plugins.map(plugin => plugin.manifest.slug);
@@ -147,7 +155,7 @@ function loadAllPlugin() {
             });
         });
     }
-}
+}catch(e){output(e)}}
 
 
 // 删除插件
