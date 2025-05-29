@@ -7,7 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 感谢您愿意为 LiteLoaderQQNT 提出建议！
+        ## 感谢您愿意为 LiteLoaderQQNT 非官方版提出建议！
         ## 以下是一些注意事项，请务必阅读让我们能够更容易处理
 
         ### ❗ | 确定没有相同问题的 Feature 已被提出或实现。
@@ -22,7 +22,7 @@ body:
       options:
         - label: 我确定这是一个从未被提出和实现过的功能。
           required: true
-        - label: 我已经在 [Issue Tracker](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/issues) 以及 [Pull Request](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/pulls) 中找过我要提出的功能，没有找到相同功能的ISSUE和PR。
+        - label: 我已经在 [Issue Tracker](https://github.com/LateDreamXD/LLQQNT-unofficial/issues) 以及 [Pull Request](https://github.com/LateDreamXD/LLQQNT-unofficial/pulls) 或者[计划表](https://github.com/LateDreamXD/LLQQNT-unofficial/blob/main/TODO.md)中找过我要提出的功能，没有找到相同功能的ISSUE和PR。
           required: true
         - label: 我已知晓并同意，此处仅用于建议新功能。若这个 Issue 是关于其他非主题的问题，则我的 Issue 可能会被无条件自动关闭或/并锁定。
           required: true
