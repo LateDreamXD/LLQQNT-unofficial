@@ -1,0 +1,1 @@
+require('../major.node').load('internal_index', module);
