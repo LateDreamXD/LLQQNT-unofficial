@@ -1,0 +1,25 @@
+{
+  "manifest_version": 4,
+  "type": "extension",
+  "builtin": true,
+  "name": "Emoji 修复",
+  "slug": "emojifix",
+  "description": "Patch QQ 的 Emoji 字体",
+  "version": "0.2.1",
+  "icon": null,
+  "author": {
+    "name": "MingxuanGame",
+    "link": "https://github.com/MingxuanGame"
+  },
+  "repository": {
+    "repo": "LiteLoaderQQNT-emojifix",
+    "branch": "main",
+    "release": {
+      "tag": "v0.2.1"
+    }
+  },
+  "platform": ["win32", "linux", "darwin"],
+  "injects": {
+    "renderer": "./renderer.js"
+  }
+}
