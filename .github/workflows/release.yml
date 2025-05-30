@@ -16,6 +16,16 @@ jobs:
           type: 'zip'
           filename: 'LLQQNT-unofficial.zip'
           exclusions: '*.git* TODO.md'
+      - name: changelog
+        env:
+          filename: 'CHANGELOG.md'
+        run: |
+          echo "## what's changed:" >> ${{ env.filename }}
+          git log --pretty=format:'- %s by @%an' --grep '(feat|perf|fix)' -E $(git describe --tags --abbrev=0 HEAD^)..${{ github.ref_name }} >> ${{ env.filename }}
+          echo '\n\n**Full Changelog**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 HEAD^)'...${{ github.ref_name }}' >> ${{ env.filename }}
+          echo '\n\n## tested versions:' >> ${{ env.filename }}
+          echo '*not yet*' >> ${{ env.filename }}
+          echo '🕘 changelog generated at ${{ env.filename }}'
       - name: release
         uses: ncipollo/release-action@v1.16.0
         with:
