@@ -21,7 +21,7 @@ jobs:
           filename: 'CHANGELOG.md'
         run: |
           echo "## what's changed:" >> ${{ env.filename }}
-          git log --pretty=format:'- %s by @%an' --grep '(feat|perf|fix)' -E $(git describe --tags --abbrev=0 HEAD^)..${{ github.ref_name }} >> ${{ env.filename }}
+          git log --pretty=format:'- %s by @%an' --grep '^(fix|feat|perf)(\(.+\))?:' -E $(git describe --tags --abbrev=0 HEAD^)..${{ github.ref_name }} >> ${{ env.filename }}
           echo '\n\n**Full Changelog**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 HEAD^)'...${{ github.ref_name }}' >> ${{ env.filename }}
           echo '\n\n## tested versions:' >> ${{ env.filename }}
           echo '*not yet*' >> ${{ env.filename }}
