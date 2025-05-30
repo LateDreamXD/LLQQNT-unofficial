@@ -1,0 +1,27 @@
+name: release
+
+on:
+  push:
+    tags: '*'
+
+jobs:
+  auto-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: archive
+        uses: TheDoctor0/zip-release@0.7.6
+        with:
+          type: 'zip'
+          filename: 'LLQQNT-unofficial.zip'
+          exclusions: '*.git* TODO.md'
+      - name: release
+        uses: ncipollo/release-action@v1.16.0
+        with:
+          artifacts: 'LLQQNT-unofficial.zip'
+          token: ${{ secrets.GITHUB_TOKEN }}
+          discussionCategory: 'releases'
+          makeLatest: true
+          name: LLQQNT-unofficial v${{ github.ref_name }}
+          bodyFile: 'CHANGELOG.md'
