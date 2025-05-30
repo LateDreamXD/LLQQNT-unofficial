@@ -60,7 +60,8 @@ body:
   - type: input
     id: env-LiteLoaderQQNT-ver
     attributes:
-      label: LLQQNT-unofficial 版本 （或 Commit Id）
+      label: LLQQNT-unofficial 版本或 commit id
+      description: '例如: `1.2.3+uof.1`, `cd2523f`'
     validations:
       required: true
 
