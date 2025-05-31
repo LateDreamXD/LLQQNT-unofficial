@@ -3,6 +3,7 @@ const fs = require('fs');
 require("./liteloader_api/main.js");
 require("./loader_core/plugin_loader.js");
 require("./main.js");
+require('./uno_api/main.js');
 
 const version = LiteLoader.package.qqnt.buildVersion;
 const app_launcher_path = path.join(process.resourcesPath, "app/app_launcher/");
