@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: archive
         uses: TheDoctor0/zip-release@0.7.6
         with:
@@ -21,9 +23,9 @@ jobs:
           filename: 'CHANGELOG.md'
         run: |
           echo "## what's changed:" >> ${{ env.filename }}
-          git log --pretty=format:'- %s by @%an' --grep '^(fix|feat|perf)(\(.+\))?:' -E $(git describe --tags --abbrev=0 HEAD^)..${{ github.ref_name }} >> ${{ env.filename }}
-          echo '\n\n**Full Changelog**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 HEAD^)'...${{ github.ref_name }}' >> ${{ env.filename }}
-          echo '\n\n## tested versions:' >> ${{ env.filename }}
+          git log --pretty=format:'- %s by @%an' --grep '^(fix|feat|perf)(\(.+\))?:' -E $(git describe --tags --abbrev=0 ${{ github.ref_name }}^)..${{ github.ref_name }} >> ${{ env.filename }}
+          echo -e '\n\n**Full Changelog**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 ${{ github.ref_name }}^)'...${{ github.ref_name }}' >> ${{ env.filename }}
+          echo -e '\n\n## tested versions:' >> ${{ env.filename }}
           echo '*not yet*' >> ${{ env.filename }}
           echo '🕘 changelog generated at ${{ env.filename }}'
       - name: release
