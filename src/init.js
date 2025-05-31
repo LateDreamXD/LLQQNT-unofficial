@@ -8,16 +8,16 @@ require('./uno_api/main.js');
 const version = LiteLoader.package.qqnt.buildVersion;
 const app_launcher_path = path.join(process.resourcesPath, "app/app_launcher/");
 
-if(!fs.existsSync(app_launcher_path)) {
+if(!fs.existsSync(path.join(app_launcher_path, 'index.js'))) {
     fs.mkdirSync(app_launcher_path, {recursive: true});
     fs.cpSync(
-        `${LiteLoader.path.root}/src/app_launchers/34xxx/app_launcher/`,
+        path.join(LiteLoader.path.root, 'src/app_launchers/34xxx/app_launcher/'),
         app_launcher_path,
         {recursive: true}
     );
 }
 
-require(`${app_launcher_path}/index.js`);
+require(path.join(app_launcher_path, 'index.js'));
 
 setImmediate(() => {
     global.launcher.installPathPkgJson.main = (() => {
