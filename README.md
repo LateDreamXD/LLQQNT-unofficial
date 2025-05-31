@@ -7,7 +7,7 @@
 </div>
 
 > [!WARNING]
-> LLQQNT-unofficial 并没有防封措施, 使用 LLQQNTUOF 请自行承担风险
+> LLQQNT-unofficial 并没有防封措施, 使用 LLQQNTuno 请自行承担风险
 >
 > 关于封禁问题详情见 [LLQQNT 官网](https://liteloaderqqnt.github.io/guide/introduction.html#警告2)
 

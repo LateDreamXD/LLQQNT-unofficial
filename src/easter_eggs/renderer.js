@@ -117,7 +117,7 @@ loadEasterEggs([
         hash: '#/about',
         selector: '.content .version',
         trigger: (version_text) => {
-            version_text.textContent += ' with LLQQNTUOF';
+            version_text.textContent += ' with LLQQNTuno';
         }
     }
 ]);

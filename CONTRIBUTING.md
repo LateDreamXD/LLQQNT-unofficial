@@ -1,6 +1,6 @@
 ## LLQQNT-unofficial 贡献指北
 
-想要向 LLQQNTUOF 贡献你的代码? 请按照以下步骤进行:
+想要向 LLQQNTuno 贡献你的代码? 请按照以下步骤进行:
 
 1. [fork 项目](https://github.com/LateDreamXD/LLQQNT-unofficial/fork)到你的 github 账户
 2. 把项目 clone 到本地

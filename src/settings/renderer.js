@@ -130,7 +130,7 @@ async function initVersions(view) {
     const jump_link = () => LiteLoader.api.openExternal(update_btn.value);
     const try_again = () => {
         // 初始化 显示
-        title.textContent = "正在瞅一眼 LLQQNTUOF 是否有新版本";
+        title.textContent = "正在瞅一眼 LLQQNTuno 是否有新版本";
         update_btn.textContent = "你先别急";
         update_btn.value = null;
         update_btn.removeEventListener("click", jump_link);
