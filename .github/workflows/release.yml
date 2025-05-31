@@ -15,7 +15,7 @@ jobs:
         with:
           type: 'zip'
           filename: 'LLQQNT-unofficial.zip'
-          exclusions: '*.git* TODO.md'
+          exclusions: '*.git* CONTRIBUTING.md TODO.md'
       - name: changelog
         env:
           filename: 'CHANGELOG.md'
