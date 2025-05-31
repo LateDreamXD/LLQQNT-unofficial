@@ -20,11 +20,11 @@
         </div>
         <setting-button data-type="secondary" class="manager">管理</setting-button>
         <setting-modal class="manager-modal">
-            <setting-section data-title="开关">
+            <setting-section data-title>
                 <setting-panel>
                     <setting-list data-direction="column">
                         <setting-item>
-                            <setting-text>加载此插件</setting-text>
+                            <setting-text>激活</setting-text>
                             <setting-switch class="enable"></setting-switch>
                         </setting-item>
                     </setting-list>
@@ -34,12 +34,12 @@
                 <setting-panel>
                     <setting-list data-direction="column">
                         <setting-item>
-                            <setting-text>删除此插件数据</setting-text>
-                            <setting-switch class="keepdata"></setting-switch>
-                        </setting-item>
-                        <setting-item>
                             <setting-text>下次启动时卸载</setting-text>
                             <setting-switch class="uninstall"></setting-switch>
+                        </setting-item>
+                        <setting-item>
+                            <setting-text></setting-text>
+                            <setting-button class="delete-data">删除插件数据</setting-button>
                         </setting-item>
                     </setting-list>
                 </setting-panel>
