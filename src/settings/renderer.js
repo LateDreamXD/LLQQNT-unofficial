@@ -243,6 +243,7 @@ async function initPluginList(view) {
         const manager_modal_enable = plugin_item_manager_modal.querySelector(".enable");
         const manager_modal_delete_data = plugin_item_manager_modal.querySelector(".delete-data");
         const manager_modal_uninstall = plugin_item_manager_modal.querySelector(".uninstall");
+        const manager_modal_keep_data = plugin_item_manager_modal.querySelector(".keep-data");
 
         plugin_item_icon.innerHTML = await appropriateIcon(icon);
         plugin_item_name.textContent = plugin.manifest.builtin?
@@ -294,11 +295,15 @@ async function initPluginList(view) {
             alert(`已删除 ${plugin.manifest.name} 全部数据`);
         });
 
+        manager_modal_keep_data.addEventListener('click', () => {
+            manager_modal_keep_data.toggleAttribute("is-active");
+        });
+
         manager_modal_uninstall.toggleAttribute("is-active", !!config.deleting_plugins?.[slug]);
         manager_modal_uninstall.addEventListener("click", () => {
             const isActive = manager_modal_uninstall.hasAttribute("is-active");
             manager_modal_uninstall.toggleAttribute("is-active", !isActive);
-            const keepdata = manager_modal_keepdata.hasAttribute("is-active");
+            const keepdata = manager_modal_keep_data.hasAttribute("is-active");
             LiteLoader.api.plugin.delete(slug, keepdata, isActive);
         });
 
