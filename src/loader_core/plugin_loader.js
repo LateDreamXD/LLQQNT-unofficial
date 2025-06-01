@@ -102,20 +102,25 @@ function findAllPlugin(searchPath = LiteLoader.path.plugins) {
 }
 
 function findAllBuiltinPlugin() {
-    return findAllPlugin(LiteLoader.path.builtin_plugins);
+    return findAllPlugin(path.join(LiteLoader.path.root, 'src/builtin_plugins/')).map(plugin => {
+        plugin.isBuiltin = true;
+        return plugin;
+    });
 }
 
 
 function getPluginInfo(pathname, manifest, isBuiltin = false) {
     const incompatible_platform = !manifest.platform.includes(LiteLoader.os.platform);
     const disabled_plugin = config.disabled_plugins.includes(manifest.slug);
-    const plugin_path = path.join(isBuiltin? LiteLoader.path.builtin_plugins: LiteLoader.path.plugins,
-                                  pathname);
+    const plugin_path = path.join(
+        isBuiltin? [LiteLoader.path.root, 'src/builtin_plugins/'].join(path.sep):
+        LiteLoader.path.plugins, pathname
+    );
     const data_path = path.join(LiteLoader.path.data, manifest.slug);
     const main_file = path.join(plugin_path, manifest?.injects?.main ?? "");
     const preload_file = path.join(plugin_path, manifest?.injects?.preload ?? "");
     const renderer_file = path.join(plugin_path, manifest?.injects?.renderer ?? "");
-    return {
+    const plugin_info = {
         manifest: manifest,
         incompatible: incompatible_platform,
         disabled: disabled_plugin,
@@ -129,6 +134,8 @@ function getPluginInfo(pathname, manifest, isBuiltin = false) {
             }
         }
     }
+    isBuiltin && plugin_info.builtin = true;
+    return plugin_info;
 }
 
 
@@ -137,10 +144,10 @@ function loadAllPlugin() {try{
     const user_plugins = findAllPlugin();
     const plugins = builtin_plugins.concat(user_plugins);
     const dependencies = new Set();
-    for (const { pathname, manifest } of plugins) {
-        output("Found Plugin:", manifest.name);
+    for (const { pathname, manifest, isBuiltin } of plugins) {
+        output("Found Plugin:", manifest.name, isBuiltin && '(builtin)');
         LiteLoader.plugins[manifest.slug] = getPluginInfo(pathname, manifest,
-            !!builtin_plugins.find(plugin => plugin.pathname == pathname));
+            !!isBuiltin);
         manifest.dependencies?.forEach?.(slug => dependencies.add(slug));
     }
     const slugs = plugins.map(plugin => plugin.manifest.slug);

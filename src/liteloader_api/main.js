@@ -125,9 +125,7 @@ const LiteLoader = {
         root: root_path,
         profile: profile_path,
         data: data_path,
-        plugins: plugins_path,
-        user_plugins: plugins_path,
-        builtin_plugins: path.join(root_path, 'src/plugins'),
+        plugins: plugins_path
     },
     versions: {
         qqnt: qqnt_version.curVersion ?? qqnt_version.version,

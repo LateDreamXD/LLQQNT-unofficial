@@ -1,7 +1,6 @@
 {
   "manifest_version": 4,
   "type": "extension",
-  "builtin": true,
   "name": "Emoji 修复",
   "slug": "emojifix",
   "description": "Patch QQ 的 Emoji 字体",

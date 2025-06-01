@@ -246,7 +246,7 @@ async function initPluginList(view) {
         const manager_modal_keep_data = plugin_item_manager_modal.querySelector(".keep-data");
 
         plugin_item_icon.innerHTML = await appropriateIcon(icon);
-        plugin_item_name.textContent = plugin.manifest.builtin?
+        plugin_item_name.textContent = plugin.builtin?
             `${plugin.manifest.name} (内置)`:
             plugin.manifest.name;
         plugin_item_name.title = plugin.manifest.name;
@@ -281,6 +281,8 @@ async function initPluginList(view) {
             plugin_item_manager_modal.toggleAttribute("is-active");
         });
 
+        manager_modal_enable.toggleAttribute('is-disabled',
+            !!plugin.builtin && plugin.manifest.type === 'framework');
         manager_modal_enable.toggleAttribute("is-active", !config.disabled_plugins.includes(slug));
         manager_modal_enable.addEventListener("click", () => {
             const isActive = manager_modal_enable.hasAttribute("is-active");
@@ -288,17 +290,23 @@ async function initPluginList(view) {
             LiteLoader.api.plugin.disable(slug, !isActive);
         });
 
+        manager_modal_delete_data.toggleAttribute('is-disabled', !!plugin.builtin);
         manager_modal_delete_data.addEventListener('click', () => {
-            if(!confirm(`🤔 确定删除插件 ${plugin.manifest.name} 全部数据?`))
+            if(!confirm(`(￢‸￢) ? 确定删除插件 ${plugin.manifest.name} 全部数据?`))
                 return;
             LLQQNTuno.api.plugin.rmdata(slug);
             alert(`已删除 ${plugin.manifest.name} 全部数据`);
         });
 
+        manager_modal_keep_data.toggleAttribute('is-disabled', !!plugin.builtin);
+        if(!!config.deleting_plugins?.[slug])
+            manager_modal_keep_data.toggleAttribute('is-active',
+            !config.deleting_plugins?.[slug]?.data_path);
         manager_modal_keep_data.addEventListener('click', () => {
             manager_modal_keep_data.toggleAttribute("is-active");
         });
 
+        manager_modal_uninstall.toggleAttribute('is-disabled', !!plugin.builtin);
         manager_modal_uninstall.toggleAttribute("is-active", !!config.deleting_plugins?.[slug]);
         manager_modal_uninstall.addEventListener("click", () => {
             const isActive = manager_modal_uninstall.hasAttribute("is-active");
