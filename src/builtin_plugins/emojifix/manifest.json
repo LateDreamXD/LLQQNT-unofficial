@@ -6,12 +6,12 @@
   "description": "Patch QQ 的 Emoji 字体",
   "version": "0.2.1",
   "icon": null,
-  "author": {
+  "authors": [{
     "name": "MingxuanGame",
     "link": "https://github.com/MingxuanGame"
-  },
+  }],
   "repository": {
-    "repo": "LiteLoaderQQNT-emojifix",
+    "repo": "MingxuanGame/LiteLoaderQQNT-emojifix",
     "branch": "main",
     "release": {
       "tag": "v0.2.1"
