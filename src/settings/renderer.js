@@ -292,7 +292,7 @@ async function initPluginList(view) {
 
         manager_modal_delete_data.toggleAttribute('is-disabled', !!plugin.builtin);
         manager_modal_delete_data.addEventListener('click', () => {
-            if(!confirm(`(￢‸￢) ? 确定删除插件 ${plugin.manifest.name} 全部数据?`))
+            if(!confirm(`(→_→) ? 确定删除插件 ${plugin.manifest.name} 全部数据?`))
                 return;
             LLQQNTuno.api.plugin.rmdata(slug);
             alert(`已删除 ${plugin.manifest.name} 全部数据`);
@@ -302,17 +302,20 @@ async function initPluginList(view) {
         if(!!config.deleting_plugins?.[slug])
             manager_modal_keep_data.toggleAttribute('is-active',
             !config.deleting_plugins?.[slug]?.data_path);
-        manager_modal_keep_data.addEventListener('click', () => {
+        manager_modal_keep_data.addEventListener('click', async() => {
+            const config = await LiteLoader.api.config.get("LiteLoader", default_config);
             manager_modal_keep_data.toggleAttribute("is-active");
+            config.deleting_plugins[slug].data_path = manager_modal_keep_data.hasAttribute("is-active")?
+                null : plugin.path.data;
+            LiteLoader.api.config.set("LiteLoader", config);
         });
 
         manager_modal_uninstall.toggleAttribute('is-disabled', !!plugin.builtin);
         manager_modal_uninstall.toggleAttribute("is-active", !!config.deleting_plugins?.[slug]);
         manager_modal_uninstall.addEventListener("click", () => {
-            const isActive = manager_modal_uninstall.hasAttribute("is-active");
-            manager_modal_uninstall.toggleAttribute("is-active", !isActive);
+            manager_modal_uninstall.toggleAttribute("is-active");
             const keepdata = manager_modal_keep_data.hasAttribute("is-active");
-            LiteLoader.api.plugin.delete(slug, keepdata, isActive);
+            LiteLoader.api.plugin.delete(slug, !keepdata, !manager_modal_uninstall.hasAttribute("is-active"));
         });
 
         plugin_list.append(plugin_item);
