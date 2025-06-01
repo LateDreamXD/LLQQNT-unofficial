@@ -28,5 +28,4 @@ Object.defineProperty(globalThis, "runPreloadScript", {
 (async () => {
     runPreloadScript(await (await fetch(`local://root/src/liteloader_api/preload.js`)).text());
     runPreloadScript(await (await fetch(`local://root/src/loader_core/preload.js`)).text());
-    runPreloadScript(await (await fetch(`local://root/src/uno_api/preload.js`)).text());
 })();

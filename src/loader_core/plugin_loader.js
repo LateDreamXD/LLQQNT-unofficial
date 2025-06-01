@@ -134,7 +134,7 @@ function getPluginInfo(pathname, manifest, isBuiltin = false) {
             }
         }
     }
-    isBuiltin && plugin_info.builtin = true;
+    isBuiltin && (plugin_info.builtin = true);
     return plugin_info;
 }
 
@@ -145,7 +145,7 @@ function loadAllPlugin() {try{
     const plugins = builtin_plugins.concat(user_plugins);
     const dependencies = new Set();
     for (const { pathname, manifest, isBuiltin } of plugins) {
-        output("Found Plugin:", manifest.name, isBuiltin && '(builtin)');
+        output("Found Plugin:", manifest.name, isBuiltin? '(builtin)': '(user)');
         LiteLoader.plugins[manifest.slug] = getPluginInfo(pathname, manifest,
             !!isBuiltin);
         manifest.dependencies?.forEach?.(slug => dependencies.add(slug));
