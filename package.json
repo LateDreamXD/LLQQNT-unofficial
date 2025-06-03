@@ -1,6 +1,6 @@
 {
     "name": "llqqnt-unofficial",
-    "version": "1.2.3+uno.2-pre4",
+    "version": "1.2.3+uno.2-pre5",
     "description": "LiteLoaderQQNT 非官方版本，基于 LiteLoaderQQNT 二次开发，遵循上游版本的开源协议",
     "main": "./src/init.js",
     "private": true,
