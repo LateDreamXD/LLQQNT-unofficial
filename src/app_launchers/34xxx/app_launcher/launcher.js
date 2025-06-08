@@ -1,1 +1,0 @@
-require('../major.node').load('internal_launcher', module);
