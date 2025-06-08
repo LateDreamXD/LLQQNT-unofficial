@@ -1,17 +1,17 @@
 {
     "name": "llqqnt-unofficial",
-    "version": "1.2.3+uno.2-pre5",
+    "version": "1.2.3+uno.2-pre6",
     "description": "LiteLoaderQQNT 非官方版本，基于 LiteLoaderQQNT 二次开发，遵循上游版本的开源协议",
     "main": "./src/init.js",
     "private": true,
     "license": "MIT",
     "author": {
-        "name": "LateDream",
-        "url": "https://github.com/LateDreamXD"
+        "name": "晚梦",
+        "url": "https://about.latedream.cn"
     },
     "contributors": [{
-        "name": "LiteLoaderQQNT",
-        "url": "https://github.com/LiteLoaderQQNT"
+        "name": "LiteLoaderQQNT Contributors",
+        "url": "https://github.com/LiteLoaderQQNT/LiteLoaderQQNT/graphs/contributors"
     }],
     "bugs": "https://github.com/LateDreamXD/LLQQNT-unofficial/issues",
     "repository": {
