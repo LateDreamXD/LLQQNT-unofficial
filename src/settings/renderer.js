@@ -294,8 +294,12 @@ async function initPluginList(view) {
         manager_modal_delete_data.addEventListener('click', () => {
             if(!confirm(`(→_→) ? 确定删除插件 ${plugin.manifest.name} 全部数据?`))
                 return;
-            LLQQNTuno.api.plugin.rmdata(slug);
-            alert(`已删除 ${plugin.manifest.name} 全部数据`);
+            if(!!LLQQNTuno) {
+                LLQQNTuno.api.plugin.rmdata(slug);
+                alert(`已删除 ${plugin.manifest.name} 全部数据`);
+            } else {
+                alert('xwx 请先安装 LLQQNT-uno_api !');
+            }
         });
 
         manager_modal_keep_data.toggleAttribute('is-disabled', !!plugin.builtin);
