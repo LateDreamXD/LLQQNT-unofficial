@@ -348,14 +348,11 @@ async function initPath(view) {
 async function initAbout(view) {
     const liteloaderqqnt = view.querySelector(".about .liteloaderqqnt");
     const github = view.querySelector(".about .github");
-    const group = view.querySelector(".about .group");
-    const channel = view.querySelector(".about .channel");
 
     liteloaderqqnt.addEventListener("click", () => LiteLoader.api.openExternal("https://liteloaderqqnt.github.io"));
     github.addEventListener('click', () => LiteLoader.api.openExternal('https://github.com/LateDreamXD/LLQQNT-unofficial'))
     view.querySelector('.about .github-upstream').addEventListener("click", () => LiteLoader.api.openExternal("https://github.com/LiteLoaderQQNT/LiteLoaderQQNT"));
-    group.addEventListener("click", () => LiteLoader.api.openExternal("https://t.me/LiteLoaderQQNT"));
-    channel.addEventListener("click", () => LiteLoader.api.openExternal("https://t.me/LiteLoaderQQNT_Channel"));
+    view.querySelector('.about .discord-channel').addEventListener('click', () => LiteLoader.api.openExternal('https://discord.gg/pv9NKPSsYZ'));
 
     // Hitokoto - 一言
     let visible = true;
