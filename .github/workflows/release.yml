@@ -26,8 +26,6 @@ jobs:
           echo "## what's changed:" >> ${{ env.filename }}
           git log --pretty=format:'- %s by @%an' --grep '^(fix|feat|perf)(\(.+\))?:' -E $(git describe --tags --abbrev=0 ${{ github.ref_name }}^)..${{ github.ref_name }} >> ${{ env.filename }}
           echo -e '\n\n**Full Changelog**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 ${{ github.ref_name }}^)'...${{ github.ref_name }}' >> ${{ env.filename }}
-          echo -e '\n\n## tested versions:' >> ${{ env.filename }}
-          echo '*not yet*' >> ${{ env.filename }}
           echo '🕘 changelog generated at ${{ env.filename }}'
       - name: release
         uses: ncipollo/release-action@v1.16.0
