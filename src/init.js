@@ -1,14 +1,14 @@
-const path = require('path');
-const fs = require('fs');
+const {join} = require('path');
+const {existsSync} = require('fs');
 require("./liteloader_api/main.js");
 require("./loader_core/plugin_loader.js");
 require("./main.js");
 
 const version = LiteLoader.package.qqnt.buildVersion;
-const app_launcher_path = path.join(process.resourcesPath, "app/app_launcher/");
+const app_launcher_path = join(process.resourcesPath, "app/app_launcher/");
 
-if(fs.existsSync(path.join(app_launcher_path, 'index.js')))
-    require(path.join(app_launcher_path, 'index.js'));
+if(existsSync(join(app_launcher_path, 'index.js')))
+    require(join(app_launcher_path, 'index.js'));
 else
     require('./app_launcher/index.js');
 
