@@ -1,5 +1,20 @@
 ## 安装手册
 
+<div align="right">
+
+<sup>
+理论上适用于
+
+[![QQNT](https://img.shields.io/badge/build_34740%2B-any?style=social&logo=qq&label=QQNT)
+](https://im.qq.com/pcqq/)
+
+[![LLQQNTuno](https://img.shields.io/badge/1.2.3%2Buno.2%2B-any?style=social&logo=plugin&label=LLQQNTuno)
+](https://github.com/LateDreamXD/LLQQNT-unofficial)
+</sup>
+
+</div>
+<br>
+
 最近我发现还是好多人不会安装啊, 所以我还是写一份安装手册吧 😥  
   
 1. 去[发行页](https://github.com/LateDreamXD/LLQQNT-unofficial/releases)下载最新版压缩包
