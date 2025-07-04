@@ -4,11 +4,11 @@
 <sup>
 理论上适用于
 
-[![LiteLoaderQQNT](https://img.shields.io/badge/1.0.0%2B-any?style=social&label=LiteLoaderQQNT)
-](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT)
+[![OS](https://img.shields.io/badge/any-any?style=social&logo=&label=Operating%20System)]()
 
-[![LLQQNTuno](https://img.shields.io/badge/1.2.3%2Buof.1%2B-any?style=social&logo=plugin&label=LLQQNTuno)
-](https://github.com/LateDreamXD/LLQQNT-unofficial)
+[![LiteLoaderQQNT](https://img.shields.io/badge/1.0.0%2B-any?style=social&label=LiteLoaderQQNT)](https://github.com/LiteLoaderQQNT/LiteLoaderQQNT)
+
+[![LLQQNTuno](https://img.shields.io/badge/1.2.3%2Buof.1%2B-any?style=social&logo=plugin&label=LLQQNTuno)](https://github.com/LateDreamXD/LLQQNT-unofficial)
 </sup>
 
 </div>

@@ -5,11 +5,11 @@
 <sup>
 理论上适用于
 
-[![QQNT](https://img.shields.io/badge/build_34740%2B-any?style=social&logo=qq&label=QQNT)
-](https://im.qq.com/pcqq/)
+[![Windows](https://img.shields.io/badge/10%2B-any?style=social&logo=windows&label=Windows)](https://www.microsoft.com/zh-cn/software-download)
 
-[![LLQQNTuno](https://img.shields.io/badge/1.2.3%2Buno.2%2B-any?style=social&logo=plugin&label=LLQQNTuno)
-](https://github.com/LateDreamXD/LLQQNT-unofficial)
+[![QQNT](https://img.shields.io/badge/build_34740%2B-any?style=social&logo=qq&label=QQNT)](https://im.qq.com/pcqq/)
+
+[![LLQQNTuno](https://img.shields.io/badge/1.2.3%2Buno.2%2B-any?style=social&logo=plugin&label=LLQQNTuno)](https://github.com/LateDreamXD/LLQQNT-unofficial)
 </sup>
 
 </div>
