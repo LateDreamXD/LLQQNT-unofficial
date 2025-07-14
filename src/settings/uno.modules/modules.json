@@ -1,0 +1,13 @@
+[
+	{
+		"name": "一般功能",
+		"detail": "awa",
+		"id": "general"
+	},
+	{
+		"name": "实验性功能",
+		"detail": "仍在开发中或未经过充分测试的功能, 可能导致加载器不稳定或其他问题 *不建议开启*",
+		"id": "experimental",
+		"color": "red"
+	}
+]

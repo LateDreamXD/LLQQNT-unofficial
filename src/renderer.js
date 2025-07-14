@@ -118,3 +118,5 @@ function watchComponentUnmount(component) {
         }
     });
 }
+
+import('./uno/renderer.js');

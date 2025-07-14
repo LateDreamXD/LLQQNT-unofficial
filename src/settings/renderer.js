@@ -77,6 +77,7 @@ export class SettingInterface {
             initVersions(view);
             initPluginList(view);
             initPath(view);
+            initUno(view);
             initAbout(view);
         });
     }
@@ -335,6 +336,16 @@ async function initPluginList(view) {
     plugin_lists.framework.dataset["title"] = `依赖 (${plugin_counts.framework.join('/')})`;
 }
 
+async function initUno(view) {
+    view = view.querySelector('#uno');
+    if(!Object.prototype.hasOwnProperty.call(LiteLoader.plugins, 'uno_api')) {
+        uno.innerHTML = `<style>#uno>.no-plugin{display:block;text-align:center;font-size:1.5em;margin-top:2em;margin-bottom:2em}</style>
+<div class="no-plugin">😿 未安装 Uno API 插件, 该功能不可用</div>`;
+        return null;
+    }
+    const uno = new (await import('./renderer.uno.js')).default(view);
+    return uno;
+}
 
 async function initPath(view) {
     const root_path_content = view.querySelectorAll(".path .root setting-text")[2];
