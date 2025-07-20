@@ -3,6 +3,7 @@ name: release
 on:
   push:
     tags: '*'
+  workflow_dispatch:
 
 jobs:
   auto-release:
@@ -18,19 +19,18 @@ jobs:
         with:
           type: 'zip'
           filename: 'LLQQNT-unofficial.zip'
-          exclusions: '*.git* CONTRIBUTING.md TODO.md *uno_api/LICENSE *uno_api/README.md docs/*'
+          exclusions: '*.zip *.git* CONTRIBUTING.md TODO.md *uno_api/LICENSE *uno_api/README.md docs/*'
       - name: archive-lite
         uses: TheDoctor0/zip-release@0.7.6
         with:
           type: 'zip'
           filename: 'LLQQNT-unofficial.lite.zip'
-          exclusions: '*.git* CONTRIBUTING.md TODO.md *uno* builtin_plugins/* docs/*'
+          exclusions: '*.zip *.git* CONTRIBUTING.md TODO.md *uno*/* *builtin_plugins/* docs/*'
       - name: changelog
         env:
           filename: 'CHANGELOG.md'
         run: |
           echo "## 更新内容:" >> ${{ env.filename }}
-          echo -e '**更新时间**: $(date +%Y-%m-%d)\n' >> ${{ env.filename }}'
           git log --pretty=format:'- %s by @%an' --grep '^(. )?(fix|feat|perf|sync)(\(.+\))?:' -E $(git describe --tags --abbrev=0 ${{ github.ref_name }}^)..${{ github.ref_name }} >> ${{ env.filename }}
           echo -e '\n\n**完整更新日志**: https://github.com/${{ github.repository }}/compare/'$(git describe --tags --abbrev=0 ${{ github.ref_name }}^)'...${{ github.ref_name }}' >> ${{ env.filename }}
           echo -e '\n\n## 下载说明:\n\n- **LLQQNT-unofficial.zip**: 完整版(包含完整的 uno 功能以及 [UnoApi](https://github.com/LateDreamXD/LLQQNT-uno_api) 插件)\n- **LLQQNT-unofficial.lite.zip**: 精简版(仅包含对于官方版的版本适配更新)' >> ${{ env.filename }}
