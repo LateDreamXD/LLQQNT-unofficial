@@ -65,7 +65,7 @@ export class SettingInterface {
         const view = this.add({
             manifest: {
                 slug: "config_view",
-                name: "LLQQNT-unofficial",
+                name: "LLQQNTuno",
                 thumb: "./src/settings/static/default.svg"
             },
             path: {
@@ -295,7 +295,7 @@ async function initPluginList(view) {
         manager_modal_delete_data.addEventListener('click', () => {
             if(!confirm(`(→_→) ? 确定删除插件 ${plugin.manifest.name} 全部数据?`))
                 return;
-            if(!!LLQQNTuno) {
+            if(Object.prototype.hasOwnProperty.call(LiteLoader.plugins, 'uno_api')) {
                 LLQQNTuno.api.plugin.rmdata(slug);
                 alert(`已删除 ${plugin.manifest.name} 全部数据`);
             } else {
@@ -338,9 +338,21 @@ async function initPluginList(view) {
 
 async function initUno(view) {
     view = view.querySelector('#uno');
+    const uno_config = await LiteLoader.api.config.get('llqqnt-uno');
     if(!Object.prototype.hasOwnProperty.call(LiteLoader.plugins, 'uno_api')) {
-        uno.innerHTML = `<style>#uno>.no-plugin{display:block;text-align:center;font-size:1.5em;margin-top:2em;margin-bottom:2em}</style>
-<div class="no-plugin">😿 未安装 Uno API 插件, 该功能不可用</div>`;
+        if(uno_config.hide_uno_api_if_not_installed) {
+            view.remove();
+            return null;
+        }
+        view.innerHTML = `<style>#uno>.no-plugin{background-color: rgba(89, 89, 89, 0.25);backdrop-filter: blur(6px);border: 0px solid rgba(255, 255, 255, 0.18);box-shadow: rgba(14, 14, 14, 0.19) 0px 6px 15px 0px;border-radius: 12px;color: rgb(128, 128, 128);display:block;text-align:center;font-size:1.25em;padding-top:2em;padding-bottom:2em;margin-bottom:1em;}</style>
+<div class="no-plugin">😿 未安装 Uno API 插件, 该功能不可用<br /><br />
+<setting-button id="upgrade" data-type="primary">升级到完整版</setting-button>
+<setting-button id="not-show" data-type="secondary">不再显示</setting-button></div>`;
+        view.querySelector('#upgrade').addEventListener('click', () => LiteLoader.api.openExternal(`${LiteLoader.package.liteloader.repository.url.replace('.git', '')}/releases/latest`));
+        view.querySelector('#not-show').addEventListener('click', () => {
+            LiteLoader.api.config.set('llqqnt-uno', {...uno_config, hide_uno_api_if_not_installed: true});
+            view.remove();
+        });
         return null;
     }
     const uno = new (await import('./renderer.uno.js')).default(view);

@@ -119,4 +119,4 @@ function watchComponentUnmount(component) {
     });
 }
 
-import('./uno/renderer.js');
+try {await import('./uno/renderer.js');} catch {}
